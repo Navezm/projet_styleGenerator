@@ -50,39 +50,49 @@ for (let i = 0; i < buttonS.length; i++) {
 buttonS[0].style.backgroundColor = "#D6D4D4";
 buttonS[0].innerHTML = "W";
 buttonS[0].style.fontSize = "1.5rem";
+buttonS[0].classList.add("bgC");
 
 buttonS[1].style.backgroundColor = "red";
 buttonS[1].innerHTML = "R";
 buttonS[1].style.fontSize = "1.5rem";
+buttonS[1].classList.add("bgC");
 
 buttonS[2].style.backgroundColor = "green";
 buttonS[2].innerHTML = "G";
 buttonS[2].style.fontSize = "1.5rem";
+buttonS[2].classList.add("bgC");
 
 buttonS[3].style.backgroundColor = "blue";
 buttonS[3].innerHTML = "B";
 buttonS[3].style.fontSize = "1.5rem";
+buttonS[3].classList.add("bgC");
 
 buttonS[4].style.height = "35px";
 buttonS[4].style.border = "4px solid black";
+buttonS[4].classList.add("border_btn");
 
 buttonS[5].style.height = "35px";
 buttonS[5].style.border = "4px dashed black";
+buttonS[5].classList.add("border_btn");
 
 buttonS[6].style.height = "35px";
 buttonS[6].style.border = "1px solid black";
+buttonS[6].classList.add("border_btn");
 
 buttonS[7].style.backgroundColor = "#EEEEEE";    // Ce boutton ci sert à enlever toutes les bordures
 buttonS[7].innerHTML = "top"; 
 buttonS[7].style.fontSize = "1.5rem";
+buttonS[7].setAttribute("id", "remove");
 
 buttonS[8].style.borderTop = "3px solid red";    // Celui-ci pour changer l'épaisseur de la bordure
 buttonS[8].innerHTML = "top";
 buttonS[8].style.fontSize = "1.5rem";
+buttonS[8].classList.add("taille_border");
 
 buttonS[9].style.borderTop = "7px solid red";    // Celui-ci pour changer l'épaisseur de la bordure
 buttonS[9].innerHTML = "top";
 buttonS[9].style.fontSize = "1.5rem";
+buttonS[9].classList.add("taille_border");
 
 // Rangée 2 boutton // Création
 let div2 = document.createElement("div");
@@ -163,27 +173,45 @@ div4.style.height = "150px";
 div4.style.marginTop = "3%";
 body.insertBefore(div4, script);
 
-// Variable div border
+// Variable nécessaire aux évents
 let div4Border;
+let buttonBG = document.getElementsByClassName("bgC");
+let buttonBorder = document.getElementsByClassName("border_btn");
+let buttonSize = document.getElementsByClassName("taille_border");
+let remove = document.getElementById("remove");
 
 // Event Listener rangée 1
-for (let i = 0; i < buttonS.length; i++) {
-    buttonS[i].addEventListener("click", function(e){
-        div4.style.border = buttonS[i].style.border;
+for (let i = 0; i < buttonBG.length; i++) {
+    buttonBG[i].addEventListener("click", function(){
+        div4.style.backgroundColor = buttonBG[i].style.backgroundColor;
+    });
+};
+
+for (let i = 0; i < buttonBorder.length; i++) {
+    buttonBorder[i].addEventListener("click", function(){
+        div4.style.border = buttonBorder[i].style.border;
         div4Border = div4.style.border;
-        console.log(div4Border);
-        if(i < 4){
-            div4.style.backgroundColor = buttonS[i].style.backgroundColor;
-        } else if(i == 8){
-            console.log(div4Border);
-            div4.style.border = div4Border;
+    });
+};
+
+remove.addEventListener("click", function(){
+    div4.style.border = "none";
+});
+
+for (let i = 0; i < buttonSize.length; i++) {
+    buttonSize[i].addEventListener("click", function(){
+        div4.style.border = div4Border;
+        if(i == 0){
             div4.style.borderWidth = "3px";
-        } else if(i == 9){
-            div4.style.border = div4Border;
+            div4Border = div4.style.border;
+        } else if(i == 1){
             div4.style.borderWidth = "7px";
+            div4Border = div4.style.border;
         };
     });
 };
+
+
 // Event Listener rangée 2
 colorPick.addEventListener("input", function(e){
     div4.style.borderColor = colorPick.value;
