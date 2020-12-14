@@ -20,6 +20,11 @@ hr.style.marginBottom = "20px";
 
 body.prepend(titre, hr);
 
+let reset = document.createElement("button");
+reset.innerHTML = "RESET";
+reset.style.margin = "2%";
+body.appendChild(reset);
+
 // Rangée 1 boutton // Création
 let div1 = document.createElement("div");
 div1.style.display = "flex";
@@ -166,13 +171,15 @@ for (let i = 0; i < buttonS.length; i++) {
     buttonS[i].addEventListener("click", function(e){
         div4.style.border = buttonS[i].style.border;
         div4Border = div4.style.border;
+        console.log(div4Border);
         if(i < 4){
             div4.style.backgroundColor = buttonS[i].style.backgroundColor;
         } else if(i == 8){
-            // div4.style.border = "intial";
+            console.log(div4Border);
+            div4.style.border = div4Border;
             div4.style.borderWidth = "3px";
         } else if(i == 9){
-            // div4.style.border = "initial";
+            div4.style.border = div4Border;
             div4.style.borderWidth = "7px";
         };
     });
@@ -221,3 +228,11 @@ for (let i = 0; i < button3S.length; i++) {
         div4.style.borderRadius = button3S[i].style.borderRadius;
     });
 };
+
+// Event Reset
+reset.addEventListener("click", function(e){
+    e.stopPropagation();
+    div4.style.backgroundColor = "white";
+    div4.style.border = "none";
+    div4.style.borderRadius = "0%";
+});
